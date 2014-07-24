@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import unittest
 from consumer import RawFile, NormalizedFile
 # from exceptions import MissingAttributeError
