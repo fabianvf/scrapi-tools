@@ -5,7 +5,7 @@ setup(
     version='0.1.0',
     author='Fabian von Feilitzsch',
     author_email='fabian@fabianism.us',
-    packages=['scrapi-tools'],
+    packages=['scrapi_tools'],
     url='http://pypi.python.org/pypi/scrAPI-tools/',
     license='LICENSE.txt',
     description='Package to aid in consumer creation for scrAPI',

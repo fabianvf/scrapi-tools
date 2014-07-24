@@ -10,7 +10,7 @@ Typical usage looks like this:
 ```python
     #!/usr/bin/env python
 
-    from scrapi-tools.consumers import BaseConsumer, RawFile, NormalizedFile
+    from scrapi_tools.consumers import BaseConsumer, RawFile, NormalizedFile
 
 
     class MyServiceConsumer(BaseConsumer):
