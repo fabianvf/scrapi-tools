@@ -5,5 +5,3 @@ setup.py
 scrapi_tools/__init__.py
 scrapi_tools/consumer.py
 scrapi_tools/exceptions.py
-scrapi_tools/location.py
-scrapi_tools/utils.py
