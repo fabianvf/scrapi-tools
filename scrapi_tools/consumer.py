@@ -43,7 +43,7 @@ class BaseConsumer(object):
 
         normalized_output = []
         for doc in output:
-            if not isinstance(output, RawFile):
+            if not isinstance(doc, RawFile):
                 errors.append("consume() does not return a list of type [RawFile]")
             else:
                 normalized_output.append(self.normalize(doc, datetime.datetime.now))
