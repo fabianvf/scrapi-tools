@@ -66,8 +66,8 @@ class RawFile(object):
 
         if None in [attributes.get(field) for field in self.REQUIRED_FIELDS]:
             raise MissingAttributeError("RawFile object can not be created because a required"
-                                        " field is not present. Required fields are {0}\n"
-                                        "Given fields are {1}".format(self.REQUIRED_FIELDS, attributes.keys()))
+                                        " field is not present. \n\tRequired fields are {0}"
+                                        "\n\tGiven fields are {1}".format(self.REQUIRED_FIELDS, attributes.keys()))
         self.attributes = attributes
 
     def get(self, attribute):
@@ -90,8 +90,8 @@ class NormalizedFile(object):
 
         if None in [attributes.get(field) for field in self.REQUIRED_FIELDS]:
             raise MissingAttributeError("NormalizedFile object can not be created because a required"
-                                        " field is not present. Required fields are {0}\n"
-                                        "Given fields are {1}".format(self.REQUIRED_FIELDS), attributes.keys())
+                                        " field is not present. \n\tRequired fields are {0}"
+                                        "\n\tGiven fields are {1}".format(self.REQUIRED_FIELDS, attributes.keys()))
 
         self.attributes = attributes
 
