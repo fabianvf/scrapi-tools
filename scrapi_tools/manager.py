@@ -23,6 +23,9 @@ class _Registry(object):
             'normalize': normalize,
         }
 
+    def __get__(self, key):
+        return self.consumers[key]
+
 
 def lint(consume, normalize):
     """
