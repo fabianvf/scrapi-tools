@@ -31,6 +31,7 @@ if __name__ == '__main__':
 __\_\_init\_\_.py__
 ```python
 from scrapi_tools import registry
+from consumer import consume, normalize
 
 registry.register('example', consume, normalize)
 
