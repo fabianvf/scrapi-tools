@@ -23,7 +23,7 @@ class _Registry(object):
             'normalize': normalize,
         }
 
-    def __get__(self, key):
+    def __getitem__(self, key):
         return self.consumers[key]
 
 
