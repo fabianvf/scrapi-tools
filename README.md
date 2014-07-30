@@ -8,7 +8,7 @@ are compatible with the current iteration of scrAPI.
 
 Typical usage looks like this:
 
-consumer.py:
+__consumer.py__
 ```python
 #!/usr/bin/env python
 
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     lint(consume, normalize) 
 ```
 
-\_\_init\_\_.py
+__\_\_init\_\_.py__
 ```python
 from scrapi_tools import registry
 
