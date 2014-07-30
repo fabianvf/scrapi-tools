@@ -27,6 +27,9 @@ def normalize(raw_doc, timestamp):
 if __name__ == '__main__':
     lint(consume, normalize) 
 ```
+lint will check the output of your consume and normalize functions,
+ensuring that they are outputting documents of the correct type.
+
 
 __\_\_init\_\_.py__
 ```python
@@ -37,5 +40,3 @@ registry.register('example', consume, normalize)
 
 ```
 
-lint will check the output of your consume and normalize functions,
-ensuring that they are outputting documents of the correct type.
