@@ -28,7 +28,7 @@ if __name__ == '__main__':
     lint(consume, normalize) 
 ```
 
-__init__.py
+\_\_init\_\_.py
 ```python
 from scrapi_tools import registry
 
