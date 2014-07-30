@@ -7,10 +7,12 @@ these tools are focused on creating consumers and ensuring that those consumers
 are compatible with the current iteration of scrAPI.
 
 Typical usage looks like this:
+
+consumer.py:
 ```python
 #!/usr/bin/env python
 
-from scrapi_tools.manager import registry, lint
+from scrapi_tools import lint
 from scrapi_tool.document import RawDocument, NormalizedDocument
 
 
@@ -22,11 +24,16 @@ def normalize(raw_doc, timestamp):
     doc_attributes = # get stuff from raw_doc
     return NormalizedDocument(doc_attributes)
 
+if __name__ == '__main__':
+    lint(consume, normalize) 
+```
+
+__init__.py
+```python
+from scrapi_tools import registry
 
 registry.register('example', consume, normalize)
 
-if __name__ == '__main__':
-    lint(consume, normalize)    
 ```
 
 lint will check the output of your consume and normalize functions,
