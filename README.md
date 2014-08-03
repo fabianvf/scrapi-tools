@@ -28,7 +28,8 @@ if __name__ == '__main__':
     lint(consume, normalize) 
 ```
 lint will check the output of your consume and normalize functions,
-ensuring that they are outputting documents of the correct type.
+ensuring that they are outputting documents of the correct type. Please
+run lint on your consumer before submitting a pull request to scrapi.
 
 
 __\_\_init\_\_.py__
