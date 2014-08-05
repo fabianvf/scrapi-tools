@@ -65,9 +65,13 @@ def _check_values(doc, errors):
     source = doc.get("source")
     if not isinstance(title, str) and not isinstance(title, unicode):
         errors.add("Normalize does not return a string for the title, returned {} instead".format(type(title)))
-    if not isinstance(contributors, dict) or contributors.get("email") is None or contributors.get("full_name") is None:
-        errors.add("Normalize does not return contributors as a dictionary of {email: {EMAIL}, full_name: {FULL_NAME}}."
-                   "Returns {} instead".format(contributors))
+    if not isinstance(contributors, list):
+        errors.add("Normalize does not return contributors as a list, returns type {} instead".format(type(contributors)))
+    else:
+        for contributor in contributors:
+            if contributor.get("email") is None or contributor.get("full_name") is None:
+                errors.add("Normalize does not return contributors as a list of dict(email: EMAIL, full_name: FULL_NAME)."
+                           " Has type [{}] instead".format(type(contributor)))
     if not isinstance(id, str) and not isinstance(id, unicode):
         errors.add("Normalize does not return a string for the unique identifier, returned {} instead".format(type(id)))
     if not isinstance(source, str) and not isinstance(id, unicode):
