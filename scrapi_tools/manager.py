@@ -69,9 +69,14 @@ def _check_values(doc, errors):
         errors.add("Normalize does not return contributors as a list, returns type {} instead".format(type(contributors)))
     else:
         for contributor in contributors:
-            if contributor.get("email") is None or contributor.get("full_name") is None:
+            try:
+                if contributor.get("email") is None or contributor.get("full_name") is None:
+                    errors.add("Normalize does not return contributors as a list of dict(email: EMAIL, full_name: FULL_NAME)."
+                               " Has type [{}] instead".format(type(contributor)))
+            except AttributeError:
                 errors.add("Normalize does not return contributors as a list of dict(email: EMAIL, full_name: FULL_NAME)."
                            " Has type [{}] instead".format(type(contributor)))
+
     if not isinstance(id, str) and not isinstance(id, unicode):
         errors.add("Normalize does not return a string for the unique identifier, returned {} instead".format(type(id)))
     if not isinstance(source, str) and not isinstance(id, unicode):

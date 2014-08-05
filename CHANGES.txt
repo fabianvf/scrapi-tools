@@ -1,3 +1,4 @@
+v0.3.5, 08/05/2014 -- Fixed error assuming a type would be dict
 v0.3.4, 08/05/2014 -- Fixed string formatting errors
 v0.3.3, 08/05/2014 -- More verbose error messages, again
 v0.3.2, 08/05/2014 -- Errors is now a set rather than a list
