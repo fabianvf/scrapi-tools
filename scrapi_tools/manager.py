@@ -32,7 +32,7 @@ def lint(consume, normalize):
         Runs the consume and normalize functions, ensuring that
         they match the requirements of scrAPI.
     """
-    errors = {}
+    errors = set()
     output = consume()
     if len(output) == 0:
         errors.add("consume() returned an empty list")
