@@ -52,18 +52,24 @@ def lint(consume, normalize):
             errors.add("normalize does not return type NormalizedDocument")
         else:
             try:
-                title = doc.get("title")
-                contributors = doc.get("contributors")
-                id = doc.get("id")
-                source = doc.get("source")
-                if not isinstance(title, str):
-                    errors.add("Normalize does not return a string for the title, returned {} instead".format(type(title)))
-                if not isinstance(contributors, dict) or contributors.get("email") is None or contributors.get("full_name") is None:
-                    errors.add("Normalize does not return contributors as a dictionary of {email: {EMAIL}, full_name: {FULL_NAME}}")
-                if not isinstance(id, str):
-                    errors.add("Normalize does not return a string for the unique identifier, returned {} instead".format(type(id)))
-                if not isinstance(source, str):
-                    errors.add("Normalize does not return a string for the source, returned {} instead".format(type(source)))
+                errors = _check_values(doc, errors)
             except AttributeError:
                 errors.add("Was not able to retrieve information from the NormalizedFile using '.get()'")
+    return errors
+
+
+def _check_values(doc, errors):
+    title = doc.get("title")
+    contributors = doc.get("contributors")
+    id = doc.get("id")
+    source = doc.get("source")
+    if not isinstance(title, str) and not isinstance(title, unicode):
+        errors.add("Normalize does not return a string for the title, returned {} instead".format(type(title)))
+    if not isinstance(contributors, dict) or contributors.get("email") is None or contributors.get("full_name") is None:
+        errors.add("Normalize does not return contributors as a dictionary of {email: {EMAIL}, full_name: {FULL_NAME}}."
+                   "Returns {} instead".format(contributors))
+    if not isinstance(id, str) and not isinstance(id, unicode):
+        errors.add("Normalize does not return a string for the unique identifier, returned {} instead".format(type(id)))
+    if not isinstance(source, str) and not isinstance(id, unicode):
+        errors.add("Normalize does not return a string for the source, returned {} instead".format(type(source)))
     return errors

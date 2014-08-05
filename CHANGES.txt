@@ -1,3 +1,4 @@
+v0.3.3, 08/05/2014 -- More verbose error messages, again
 v0.3.2, 08/05/2014 -- Errors is now a set rather than a list
 v0.3.1, 08/05/2014 -- More helpful error messages for linter
 v0.3.0, 08/05/2014 -- Additional typechecking in linter
