@@ -34,6 +34,8 @@ def lint(consume, normalize):
     """
     errors = {}
     output = consume()
+    if len(output) == 0:
+        errors.add("consume() returned an empty list")
     if not isinstance(output, list):
         errors.add("consume() does not return type list")
         return errors
@@ -43,7 +45,7 @@ def lint(consume, normalize):
         if not isinstance(doc, RawDocument):
             errors.add("consume() does not return a list of type [RawDocument]")
         else:
-            normalized_output.append(normalize(doc, datetime.datetime.now))
+            normalized_output.append(normalize(doc, datetime.datetime.now()))
 
     for doc in normalized_output:
         if not isinstance(doc, NormalizedDocument):
@@ -55,13 +57,13 @@ def lint(consume, normalize):
                 id = doc.get("id")
                 source = doc.get("source")
                 if not isinstance(title, str):
-                    errors.add("Normalize does not return a string for the title")
+                    errors.add("Normalize does not return a string for the title, returned {} instead".format(type(title)))
                 if not isinstance(contributors, dict) or contributors.get("email") is None or contributors.get("full_name") is None:
                     errors.add("Normalize does not return contributors as a dictionary of {email: {EMAIL}, full_name: {FULL_NAME}}")
                 if not isinstance(id, str):
-                    errors.add("Normalize does not return a string for the unique identifier")
+                    errors.add("Normalize does not return a string for the unique identifier, returned {} instead".format(type(id)))
                 if not isinstance(source, str):
-                    errors.add("Normalize does not return a string for the source")
+                    errors.add("Normalize does not return a string for the source, returned {} instead".format(type(source)))
             except AttributeError:
                 errors.add("Was not able to retrieve information from the NormalizedFile using '.get()'")
     return errors

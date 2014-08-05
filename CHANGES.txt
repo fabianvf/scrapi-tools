@@ -1,3 +1,4 @@
+v0.3.1, 08/05/2014 -- More helpful error messages for linter
 v0.3.0, 08/05/2014 -- Additional typechecking in linter
 v0.2.0, 07/28/2014 -- Replace subclassing with a registry for consumers
 v0.1.0, 07/24/2014 -- Initial release.

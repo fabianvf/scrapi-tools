@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='scrapi_tools',
-    version='0.3.0',
+    version='0.3.1',
     author='Fabian von Feilitzsch',
     author_email='fabian@fabianism.us',
     packages=['scrapi_tools'],
