@@ -36,5 +36,5 @@ class NormalizedDocument(BaseDocument):
     REQUIRED_FIELDS = ['title', 'contributors', 'id', 'source', 'timestamp']
 
     def __init__(self, attributes):
-        super().__init__(attributes)
+        BaseDocument.__init__(self, attributes)
         self.attributes['id'] = str(attributes['id'])
