@@ -44,22 +44,36 @@ class TestNormalizedDocument(unittest.TestCase):
     def test_legal(self):
         attributes = {
             'title': 'My super important research project',
-            'contributors': ['all, literally', 'queen, of'],
-            'id': '7',
+            'contributors': [
+                {
+                    'email': 'fake@stuff.org',
+                    'full_name': 'all, literally'
+                },
+                {
+                    'email': 'queen@bohemian.com',
+                    'full_name': 'queen, of'
+                }
+            ],
+            'id': {
+                'url': '7.com',
+                'doi': '12.33.44.pl',
+                'service_id': '123144',
+            },
             'properties': {
             },
             'source': 'still 7',
-            'timestamp': str(datetime.datetime.now())
+            'timestamp': str(datetime.datetime.now()),
+            'description': 'This is a test',
+            'tags': ['1', '2', '3'],
+            'date_created': str(datetime.datetime.now())
         }
-        try:
-            normalized_doc = NormalizedDocument(attributes)
-        except MissingAttributeError:
-            assert False
+
+        normalized_doc = NormalizedDocument(attributes)
 
         assert normalized_doc.get('title') == attributes.get('title')
-        assert normalized_doc.get('id') == '7'
+        assert normalized_doc.get('id').get('url') == '7.com'
         assert normalized_doc.get('source') == 'still 7'
-        assert normalized_doc.get('contributors') == ['all, literally', 'queen, of']
+        assert normalized_doc.get('contributors')[1].get('email') == 'queen@bohemian.com'
         assert normalized_doc.get('timestamp') == attributes.get('timestamp')
 
     def test_illegal(self):

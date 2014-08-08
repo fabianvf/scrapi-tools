@@ -33,8 +33,18 @@ class RawDocument(BaseDocument):
 
 class NormalizedDocument(BaseDocument):
 
-    REQUIRED_FIELDS = ['title', 'contributors', 'id', 'source', 'timestamp']
+    REQUIRED_FIELDS = ['title', 'contributors', 'id', 'source', 'timestamp', 'description', 'tags', 'date_created']
 
     def __init__(self, attributes):
         BaseDocument.__init__(self, attributes)
-        self.attributes['id'] = str(attributes['id'])
+
+        if not isinstance(self.get('tags'), list):
+            raise TypeError("self.attributes['tags']: Expected <type 'list'>, received {}".format(type(self.get('tags'))))
+
+        if not isinstance(self.get('contributors'), list):
+            raise TypeError("self.attributes['contributors']: Expected <type 'list'>, received {}".format(type(self.get('contributors'))))
+        elif not isinstance(self.get('contributors')[0], dict):
+            raise TypeError("self.attributes['contributors'][0]: Expected <type 'dict'>, received{}".format(type(self.get('contributors')[0])))
+
+        if not isinstance(self.get('id'), dict):
+            raise TypeError("self.attributes['id']: Expected <type 'dict'>, received {}".format(type(self.get('id'))))
