@@ -53,7 +53,8 @@ def lint(consume, normalize):
         else:
             try:
                 errors = _check_values(doc, errors)
-            except AttributeError:
+            except AttributeError as e:
+                errors.add(str(e))
                 errors.add("Was not able to retrieve information from the NormalizedFile using '.get()'")
 
     return return_string(errors)
@@ -62,7 +63,7 @@ def lint(consume, normalize):
 def _check_values(doc, errors):
     title = doc.get("title")
     contributors = doc.get("contributors")
-    _id = doc.get("_id")
+    _id = doc.get("id")
     source = doc.get("source")
     if not isinstance(title, str) and not isinstance(title, unicode):
         errors.add("Normalize does not return a string for the title, returned {} instead".format(type(title)))
