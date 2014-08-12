@@ -79,7 +79,7 @@ def _check_values(doc, errors):
                            " Has type [{}] instead".format(type(contributor)))
 
     if not isinstance(id, dict) or not id.get('service_id') or not id.get('url'):
-        errors.add("Normalize does not return a string for the unique identifier, returned {} instead".format(type(id)))
+        errors.add("Normalize does not return a dict with a service id and url for the unique identifier, returned {} instead".format(type(id)))
     if not isinstance(source, str) and not isinstance(id, unicode):
         errors.add("Normalize does not return a string for the source, returned {} instead".format(type(source)))
     return errors
