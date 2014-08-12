@@ -55,7 +55,8 @@ def lint(consume, normalize):
                 errors = _check_values(doc, errors)
             except AttributeError:
                 errors.add("Was not able to retrieve information from the NormalizedFile using '.get()'")
-    return errors
+
+    return return_string(errors)
 
 
 def _check_values(doc, errors):
@@ -77,8 +78,16 @@ def _check_values(doc, errors):
                 errors.add("Normalize does not return contributors as a list of dict(email: EMAIL, full_name: FULL_NAME)."
                            " Has type [{}] instead".format(type(contributor)))
 
-    if not isinstance(id, str) and not isinstance(id, unicode):
+    if not isinstance(id, dict) or not id.get('service_id') or not id.get('url'):
         errors.add("Normalize does not return a string for the unique identifier, returned {} instead".format(type(id)))
     if not isinstance(source, str) and not isinstance(id, unicode):
         errors.add("Normalize does not return a string for the source, returned {} instead".format(type(source)))
     return errors
+
+
+def return_string(errors):
+    return_string = '' if len(errors) > 0 else "No errors encountered!"
+    for error in list(errors):
+        return_string += error + '\n'
+
+    return return_string
