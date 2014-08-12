@@ -13,10 +13,18 @@ class BaseDocument(object):
     def __init__(self, attributes):
 
         if None in [attributes.get(field) for field in self.REQUIRED_FIELDS]:
-            raise MissingAttributeError("{2} object can not be created because a required"
-                                        " field is not present. \n\tRequired fields are {0}"
-                                        "\n\tGiven fields are {1}"
-                                        "\n\tMissing fields are: {3}".format(self.REQUIRED_FIELDS, attributes.keys(), self.__class__.__name__, self.REQUIRED_FIELDS.difference(set(attributes.keys()))))
+            raise MissingAttributeError(
+                "{cls} object can not be created because a required"
+                " field is not present. \n\tRequired fields are {fields}"
+                "\n\tGiven fields are {given}"
+                "\n\tMissing fields are: {missing}"
+                .format(
+                    fields=self.REQUIRED_FIELDS,
+                    given=attributes.keys(),
+                    cls=self.__class__.__name__,
+                    missing=list(self.REQUIRED_FIELDS.difference(set(attributes.keys())))
+                )
+            )
         self.attributes = attributes
 
     def get(self, attribute):
