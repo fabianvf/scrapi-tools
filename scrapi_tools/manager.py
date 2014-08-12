@@ -62,7 +62,7 @@ def lint(consume, normalize):
 def _check_values(doc, errors):
     title = doc.get("title")
     contributors = doc.get("contributors")
-    id = doc.get("id")
+    _id = doc.get("_id")
     source = doc.get("source")
     if not isinstance(title, str) and not isinstance(title, unicode):
         errors.add("Normalize does not return a string for the title, returned {} instead".format(type(title)))
@@ -78,9 +78,10 @@ def _check_values(doc, errors):
                 errors.add("Normalize does not return contributors as a list of dict(email: EMAIL, full_name: FULL_NAME)."
                            " Has type [{}] instead".format(type(contributor)))
 
-    if not isinstance(id, dict) or not id.get('service_id') or not id.get('url'):
-        errors.add("Normalize does not return a dict with a service id and url for the unique identifier, returned {} instead".format(type(id)))
-    if not isinstance(source, str) and not isinstance(id, unicode):
+    if not isinstance(_id, dict) or not _id.get('service_id') or not _id.get('url'):
+        errors.add("Normalize does not return a dict with a service id and url for the unique identifier,"
+                   "returned {_type} with service_id: {sid} and url: {url} instead".format(_type=type(_id), sid=_id.get('service_id'), url=_id.get('url')))
+    if not isinstance(source, str) and not isinstance(_id, unicode):
         errors.add("Normalize does not return a string for the source, returned {} instead".format(type(source)))
     return errors
 
