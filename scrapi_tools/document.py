@@ -8,14 +8,15 @@ class BaseDocument(object):
         compatibility with scrAPI.
     """
 
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = set()
 
     def __init__(self, attributes):
 
         if None in [attributes.get(field) for field in self.REQUIRED_FIELDS]:
             raise MissingAttributeError("{2} object can not be created because a required"
                                         " field is not present. \n\tRequired fields are {0}"
-                                        "\n\tGiven fields are {1}".format(self.REQUIRED_FIELDS, attributes.keys(), self.__class__.__name__))
+                                        "\n\tGiven fields are {1}"
+                                        "\n\tMissing fields are: {3}".format(self.REQUIRED_FIELDS, attributes.keys(), self.__class__.__name__, self.REQUIRED_FIELDS.difference(set(attributes.keys()))))
         self.attributes = attributes
 
     def get(self, attribute):
@@ -28,12 +29,12 @@ class BaseDocument(object):
 
 class RawDocument(BaseDocument):
 
-    REQUIRED_FIELDS = ['doc', 'doc_id', 'source', 'filetype']
+    REQUIRED_FIELDS = set(['doc', 'doc_id', 'source', 'filetype'])
 
 
 class NormalizedDocument(BaseDocument):
 
-    REQUIRED_FIELDS = ['title', 'contributors', 'id', 'source', 'timestamp', 'description', 'tags', 'date_created']
+    REQUIRED_FIELDS = set(['title', 'contributors', 'id', 'source', 'timestamp', 'description', 'tags', 'date_created'])
 
     def __init__(self, attributes):
         BaseDocument.__init__(self, attributes)
