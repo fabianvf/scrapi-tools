@@ -55,8 +55,10 @@ class NormalizedDocument(BaseDocument):
 
         if not isinstance(self.get('contributors'), list):
             raise TypeError("self.attributes['contributors']: Expected <type 'list'>, received {}".format(type(self.get('contributors'))))
-        elif not isinstance(self.get('contributors')[0], dict):
-            raise TypeError("self.attributes['contributors'][0]: Expected <type 'dict'>, received {}".format(type(self.get('contributors')[0])))
+        else:
+            for contributor in self.get('contributors'):
+                if not isinstance(self.get('contributors')[0], dict):
+                    raise TypeError("self.attributes['contributors'][0]: Expected <type 'dict'>, received {}".format(type(contributor)))
 
         if not isinstance(self.get('id'), dict):
             raise TypeError("self.attributes['id']: Expected <type 'dict'>, received {}".format(type(self.get('id'))))
