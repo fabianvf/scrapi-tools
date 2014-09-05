@@ -1,3 +1,4 @@
+v0.4.2, 09/05/2014 -- Linter now catches and logs exceptions thrown during normalization
 v0.4.1, 08/12/2014 -- Linter no longer throws errors for correct id schema
 v0.4.0, 08/08/2014 -- NormalizedDocument now checks to make sure document conforms to new schema specification
 v0.3.6, 08/07/2014 -- NormalizedDocument now converts identifier to string type

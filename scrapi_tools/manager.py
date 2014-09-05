@@ -45,7 +45,10 @@ def lint(consume, normalize):
         if not isinstance(doc, RawDocument):
             errors.add("consume() does not return a list of type [RawDocument]")
         else:
-            normalized_output.append(normalize(doc, datetime.datetime.now()))
+            try:
+                normalized_output.append(normalize(doc, datetime.datetime.now()))
+            except Exception as e:
+                errors.add(e)
 
     for doc in normalized_output:
         if not isinstance(doc, NormalizedDocument):
