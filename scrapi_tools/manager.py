@@ -93,6 +93,6 @@ def _check_values(doc, errors):
 def return_string(errors):
     return_string = '' if len(errors) > 0 else "No errors encountered!"
     for error in list(errors):
-        return_string += error + '\n'
+        return_string += str(error) + '\n'
 
     return return_string
