@@ -48,7 +48,7 @@ def lint(consume, normalize):
             try:
                 normalized_output.append(normalize(doc, datetime.datetime.now()))
             except Exception as e:
-                errors.add(e)
+                errors.add(str(e))
 
     for doc in normalized_output:
         if not isinstance(doc, NormalizedDocument):
