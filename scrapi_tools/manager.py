@@ -1,6 +1,8 @@
 import datetime
+import logging
 from document import NormalizedDocument, RawDocument
-
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
 
 class _Registry(object):
 
@@ -48,6 +50,7 @@ def lint(consume, normalize):
             try:
                 normalized_output.append(normalize(doc, datetime.datetime.now()))
             except Exception as e:
+                logger.exception(e)
                 errors.add(str(e))
 
     for doc in normalized_output:
